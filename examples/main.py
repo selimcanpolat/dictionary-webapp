@@ -3,7 +3,7 @@ import justpy as jp
 
 @jp.SetRoute("/home")
 def home():
-    wp = jp.WebPage()
+    wp = jp.QuasarPage(tailwind=True)
     main_div = jp.Div(a=wp, classes="bg-gray-800 "  # main div for background (like a canvas)
                                "h-screen")  # covers the entire screen
     top_div = jp.Div(a=main_div, classes="grid grid-cols-3 "
@@ -32,13 +32,20 @@ def home():
                       "rounded "  # button edges rounded
                       "hover:bg-red-500 "
                       "hover:text-white")
-    jp.Div(a=middle_div, text="I am a cool interactive div.")
+    jp.Div(a=middle_div, text="I am a cool interactive div.",
+           mouseenter=mouse_enter, mouseleave=mouse_leave)
     return wp
 
 
 def sum_up(widget, msg):
     sum = float(widget.in1.value) + float(widget.in2.value)
     widget.d.text = sum
+
+def mouse_enter(widget, msg):
+    widget.text = "A mouse entered the house!"
+
+def mouse_leave(widget, msg):
+    widget.text = "The mouse left!"
 
 
 # jp.Route("/home", home)
