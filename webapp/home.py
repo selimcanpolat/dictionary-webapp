@@ -23,5 +23,3 @@ class Home:
                 """, classes="text-lg")
 
         return wp
-
-jp.Route(Home.path, Home.serve)
