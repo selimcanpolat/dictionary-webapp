@@ -1,15 +1,14 @@
 import justpy as jp
 
 
-class DefaultLayout:
+class DefaultLayout(jp.QLayout):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        layout = jp.QLayout(a=wp, view="hHh lpR fFf")
-        header = jp.QHeader(a=layout)
+        header = jp.QHeader(a=self)
         toolbar = jp.QToolbar(a=header)
 
-        drawer = jp.QDrawer(a=layout, show_if_above=True, v_mode="left",
+        drawer = jp.QDrawer(a=self, show_if_above=True, v_mode="left",
                             bordered=True)
 
         scroller = jp.QScrollArea(a=drawer, classes="fit")
@@ -22,7 +21,12 @@ class DefaultLayout:
         jp.A(a=qlist, text="About", href="/about", classes=a_classes)
 
         jp.QBtn(a=toolbar, dense=True, flat=True, round=True, icon="menu",
-                click=cls.move_drawer, drawer=drawer)
+                click=self.move_drawer, drawer=drawer)
         jp.QToolbarTitle(a=toolbar, text="Instant Dictionary")
 
-        container = jp.QPageContainer(a=layout)
+    @staticmethod
+    def move_drawer(widget, msg):
+        if widget.drawer.value:
+            widget.drawer.value = False
+        else:
+            widget.drawer.value = True
