@@ -2,6 +2,7 @@ import justpy as jp
 import definition
 from webapp import layout
 from webapp import page
+import requests
 
 
 class Dictionary(page.Page):
@@ -45,6 +46,8 @@ class Dictionary(page.Page):
 
     @staticmethod
     def get_definition(widget, msg):
-        definition_of_the_word = definition.Definition(widget.value).get()
+        req = requests.get(f"http://127.0.0.1:8000/api?w={widget.value}")
+        data = req.json()
+        definition_of_the_word = data["definition"]
         widget.outputdiv.text = definition_of_the_word
 
