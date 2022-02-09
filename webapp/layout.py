@@ -3,8 +3,8 @@ import justpy as jp
 
 class DefaultLayout(jp.QLayout):
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self, view="hHh lpR fFf", **kwargs):
+        super().__init__(view=view, **kwargs)
         header = jp.QHeader(a=self)
         toolbar = jp.QToolbar(a=header)
 

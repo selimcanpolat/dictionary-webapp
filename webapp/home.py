@@ -10,7 +10,7 @@ class Home:
     def serve(cls, req):
         wp = jp.QuasarPage(tailwind=True)
 
-        lay = layout.DefaultLayout(a=wp, view="hHh lpR fFf")
+        lay = layout.DefaultLayout(a=wp)
 
         container = jp.QPageContainer(a=lay)
 

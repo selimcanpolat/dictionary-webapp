@@ -1,6 +1,6 @@
 import justpy as jp
 import definition
-
+from webapp import layout
 
 class Dictionary:
     path = "/dictionary"
@@ -8,7 +8,11 @@ class Dictionary:
     @classmethod
     def serve(cls, req):
         wp = jp.QuasarPage(tailwind=True)
-        main_div = jp.Div(a=wp, classes="bg-gray-800 "  # main div for background (like a canvas)
+        lay = layout.DefaultLayout(a=wp)
+        container = jp.QPageContainer(a=lay)
+
+
+        main_div = jp.Div(a=container, classes="bg-gray-800 "  # main div for background (like a canvas)
                                         "h-screen")  # covers the entire screen
         jp.Div(a=main_div,
                text="Instant English dictionary",

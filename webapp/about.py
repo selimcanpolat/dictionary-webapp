@@ -1,12 +1,16 @@
 import justpy as jp
-
+from webapp import layout
 
 class About:
     path = "/about"
 
     def serve(self):
         wp = jp.QuasarPage(tailwind=True)
-        main_div = jp.Div(a=wp, classes="bg-gray-800 "  # main div for background (like a canvas)
+        lay = layout.DefaultLayout(a=wp)
+        container = jp.QPageContainer(a=lay)
+
+
+        main_div = jp.Div(a=container, classes="bg-gray-800 "  # main div for background (like a canvas)
                                         "h-screen")  # covers the entire screen
         jp.Div(a=main_div,
                text="This is the About page!",
